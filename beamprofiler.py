@@ -16,8 +16,11 @@ def nothing(x):
 # initialize the camera and grab a reference to the raw camera capture
 camera = PiCamera()
 camera.resolution = (640, 480)
+#camera.resolution = (2592,1944)
+#camera.set(15,100)
 camera.framerate = 32
 rawCapture = PiRGBArray(camera, size=(640, 480))
+#rawCapture = PiRGBArray(camera, size=(2592,1944))
 
 # allow the camera to warmup
 time.sleep(0.1)
@@ -67,7 +70,7 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
 	key = cv2.waitKey(1) & 0xFF
 	
 	if key == ord('i'):
-        	cv2.imwrite('pic'+datetime.now().strftime("%Y-%d-%m_%Hh%Mm%Ss")+'.jpg', image)	
+        	cv2.imwrite('pic'+datetime.now().strftime("%Y-%d-%m_%Hh%Mm%Ss")+'.png', image)	
 		camera.brightness = 100
 		time.sleep(.5)
 		camera.brightness = 50
